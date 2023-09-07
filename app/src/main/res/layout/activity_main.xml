@@ -7,19 +7,22 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="529dp"
-        android:layout_height="750dp"
+        android:id="@+id/imageView"
+        android:layout_width="486dp"
+        android:layout_height="971dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/blackbg"
-        tools:layout_editor_absoluteX="-59dp" />
+        app:srcCompat="@drawable/blackbg" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="100dp"
-        android:layout_height="98dp"
-        app:srcCompat="@drawable/bopit"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="316dp" />
+        android:layout_width="179dp"
+        android:layout_height="207dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bopit" />
 </androidx.constraintlayout.widget.ConstraintLayout>
