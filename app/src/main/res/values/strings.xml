@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">BopIt-31-08</string>
     <string name = "app_author">Maybomi Tobar, maybomi.unu@gmail.com</string>
-    <string name = "creatorTextView">Creado por: Maybomi Tobar</string>
+    <string name = "creatorTextView">Creado por: Maybomi Tobar.</string>
+    <string name = "projectInfoTextView">Esto es un proyecto de el módulo
+        de Programación de Dispositivos Móviles.</string>
+
+    //Buttons
+    <string name = "aboutButtonTextView">Acerca De</string>
 </resources>

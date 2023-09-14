@@ -7,12 +7,28 @@
     tools:context=".AboutActivity">
 
     <TextView
+        android:id="@+id/projectInfoTextView"
+        android:layout_width="218dp"
+        android:layout_height="80dp"
+        android:text="@string/projectInfoTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499"
+        tools:text="@string/projectInfoTextView" />
+
+    <TextView
         android:id="@+id/creatorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Creado por: Maybomi Tobar"
+        android:text="@string/creatorTextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.414"
+        tools:text="@string/creatorTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
