@@ -13,6 +13,10 @@
         de Programación de Dispositivos Móviles.</string>
     <string name="title_activity_preferences">PreferencesActivity</string>
 
+    //Preferences
+    <string name="nameEditText">Ingrese su nombre de usuario.</string>>
+    <string name="scoreTextView">0</string>
+
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
