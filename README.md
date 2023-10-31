@@ -6,5 +6,5 @@ cuales son gira, estira y bop it (Golpear el icono de Bop It).
 
 Desarrollado por Maybomi Tobar.
 
-Link apk: https://drive.google.com/file/d/1zaqAjpZ3ziDwY6MbwteV3xkIVnDo9EwX/view?usp=sharing
-Link video: https://drive.google.com/file/d/1QrvHpIprGlMKoGzmalq3UscJntH7Vipy/view?usp=sharing
+Link apk: https://www.mediafire.com/file/fe840tsqw7iy9cb/BopIt3108v2.apk/file
+Link video: https://youtu.be/VoVOLEGcZ-Y
