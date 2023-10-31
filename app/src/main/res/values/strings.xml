@@ -3,17 +3,22 @@
     <string name="app_name">BopIt-31-08</string>
     <string name="app_author">Maybomi Tobar, maybomi.unu@gmail.com</string>
 
-    //MainMenu
-    <string name="aboutButtonText">Acerca De</string>
-    <string name="preferencesButtonText">Preferencias</string>
+    <!--Main Menu Activity-->
 
-    //About
+    <!--Button-->
+    <string name="playButtonTextHome">Jugar</string>
+    <string name="aboutButtonTextHome">Acerca De</string>
+    <string name="preferencesButtonTextHome">Preferencias</string>
+
+    <!--About Activity-->
+
+    <!--Text View-->
     <string name="creatorTextView">Creado por: Maybomi Tobar.</string>
     <string name="projectInfoTextView">Esto es un proyecto de el módulo
         de Programación de Dispositivos Móviles.</string>
     <string name="title_activity_preferences">PreferencesActivity</string>
 
-    //Preferences
+    <!--Preferences Activity-->
     <string name="nameEditText">Ingrese su nombre de usuario.</string>>
     <string name="scoreTextView">0</string>
 
@@ -31,5 +36,14 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <!--Game Activity-->
+
+    <!--Text View-->
+    <string name="bgMusicTextViewG">Volumen música de fondo</string>
+
+    <!--Code-->
+    <string name="winButtonG">Ganaste</string>
+    <string name="loseButtonG">Perdíste</string>
 
 </resources>

@@ -14,7 +14,7 @@ class SplashActivity : AppCompatActivity()
         setContentView(R.layout.activity_splash)
 
         val delayMillis = 3000L //3 segundos de espera.
-        val intent = Intent(this, MainMenuActivity::class.java);
+        val intent = Intent(this, HomeActivity::class.java);
 
         var handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
