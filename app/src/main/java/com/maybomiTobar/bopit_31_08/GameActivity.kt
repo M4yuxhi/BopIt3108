@@ -1,6 +1,9 @@
 package com.maybomiTobar.bopit_31_08
 
-import android.gesture.GestureOverlayView.OnGestureListener
+import android.content.Context
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorManager
 import android.media.MediaPlayer
 import android.media.PlaybackParams
 import androidx.appcompat.app.AppCompatActivity
@@ -10,33 +13,35 @@ import android.view.MotionEvent
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintSet.Motion
-import org.w3c.dom.Text
+import kotlin.math.roundToInt
 
 class GameActivity : AppCompatActivity()
 {
     private lateinit var backgroundMediaPlayer : MediaPlayer
     private lateinit var fxMediaPlayer : MediaPlayer
     private lateinit var playbackParams: PlaybackParams
-    private var musicVolume : Float = 0.3f
+    private var bgMusicVolume : Float = 0.3f
     private lateinit var volumeValueTV : TextView
+
     private lateinit var gestureDetector : GestureDetector
+
+    private lateinit var sensorManager : SensorManager
+    private lateinit var accelerometerSensor : Sensor
+    private lateinit var sensorActiveList : ArrayList<Boolean>
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
         gestureDetector = GestureDetector(this, GestureListener())
 
-        backgroundMediaPlayer = MediaPlayer.create(this, R.raw.background_music)
-        backgroundMediaPlayer.start()
-        backgroundMediaPlayer.setVolume(musicVolume, musicVolume)
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
 
-        playbackParams = backgroundMediaPlayer.playbackParams
+        initializeBGMediaPlayer()
 
-        volumeValueTV = findViewById(R.id.textViewVolumeValueG)
-        volumeValueTV.text = musicVolume.toString()
-
+        handlers()
         setOnClickListeners()
     }
 
@@ -52,6 +57,31 @@ class GameActivity : AppCompatActivity()
         super.onResume()
         backgroundMediaPlayer.start()
     }
+/*
+    override fun onSensorChanged(event : SensorEvent)
+    {
+        if(event.sensor.type == Sensor.TYPE_ACCELEROMETER)
+        {
+            var dx = Math.pow(event.values[0].toDouble(), 2.0)
+            var dy = Math.pow(event.values[1].toDouble(), 2.0)
+            var dz = Math.pow(event.values[2].toDouble(), 2.0)
+
+            var acceleration = Math.sqrt(dx + dy + dz).toFloat()
+
+            val threshold = 10.0f
+
+            if(acceleration > threshold)
+            {
+                //Revisa si la aceleración es valida para ser una agitación.
+
+            }
+            else
+            {
+
+            }
+        }
+    }
+    */
 
     override fun onTouchEvent(event: MotionEvent): Boolean
     {
@@ -70,6 +100,23 @@ class GameActivity : AppCompatActivity()
         backgroundMediaPlayer.playbackParams.setSpeed(playbackParams.speed - 0.1f)
     }
 
+    private fun handlers()
+    {
+
+    }
+
+    private fun initializeBGMediaPlayer()
+    {
+        backgroundMediaPlayer = MediaPlayer.create(this, R.raw.background_music)
+        backgroundMediaPlayer.start()
+        backgroundMediaPlayer.setVolume(bgMusicVolume, bgMusicVolume)
+
+        playbackParams = backgroundMediaPlayer.playbackParams
+
+        volumeValueTV = findViewById(R.id.textViewVolumeValueG)
+        volumeValueTV.text = (bgMusicVolume * 10).roundToInt().toString()
+    }
+
     private fun restartSoundSpeed()
     {
         backgroundMediaPlayer.playbackParams.setSpeed(1.0f)
@@ -83,38 +130,26 @@ class GameActivity : AppCompatActivity()
 
     private fun setOnClickListeners()
     {
-        val buttonWin : Button = findViewById(R.id.buttonWinG)
-        val buttonLose : Button = findViewById(R.id.buttonLoseG)
         val buttonLessVolume : Button = findViewById(R.id.buttonLessVolume)
         val buttonMoreVolume : Button = findViewById(R.id.buttonMoreVolume)
 
-        buttonWin.setOnClickListener()
-        {
-            setMusicOnFXMP(R.raw.win_sound)
-        }
-
-        buttonLose.setOnClickListener()
-        {
-            setMusicOnFXMP(R.raw.lose_sound)
-        }
-
         buttonLessVolume.setOnClickListener()
         {
-            if(musicVolume >= 0.1f)
+            if(bgMusicVolume >= 0.1f)
             {
-                musicVolume -= 0.1f
-                backgroundMediaPlayer.setVolume(musicVolume, musicVolume)
-                volumeValueTV.text = musicVolume.toString()
+                bgMusicVolume -= 0.1f
+                backgroundMediaPlayer.setVolume(bgMusicVolume, bgMusicVolume)
+                volumeValueTV.text = (bgMusicVolume * 10).roundToInt().toString()
             }
         }
 
         buttonMoreVolume.setOnClickListener()
         {
-            if(musicVolume <= 0.9f)
+            if(bgMusicVolume <= 0.9f)
             {
-                musicVolume += 0.1f
-                backgroundMediaPlayer.setVolume(musicVolume, musicVolume)
-                volumeValueTV.text = musicVolume.toString()
+                bgMusicVolume += 0.1f
+                backgroundMediaPlayer.setVolume(bgMusicVolume, bgMusicVolume)
+                volumeValueTV.text = (bgMusicVolume * 10).roundToInt().toString()
             }
         }
     }
