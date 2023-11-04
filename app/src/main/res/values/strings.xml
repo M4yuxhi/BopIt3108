@@ -40,10 +40,11 @@
     <!--Game Activity-->
 
     <!--Text View-->
-    <string name="bgMusicTextViewG">Volumen música de fondo</string>
+    <string name="scoreTextViewG">Puntaje: </string>
 
     <!--Code-->
     <string name="winButtonG">Ganaste</string>
     <string name="loseButtonG">Perdíste</string>
+    <string name="correctActionMessage">¡Bien Hecho!</string>
 
 </resources>
