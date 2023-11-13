@@ -138,7 +138,7 @@ class GameActivity : AppCompatActivity(), SensorEventListener
     {
         scoreTV.text = score.toString()
 
-        if (actionsWellPerformed >= 8 && instructionTime > 1)
+        if (actionsWellPerformed >= thresholdDifficultyIncrease && instructionTime > 1)
         {
             instructionTime -= 250
             actionsWellPerformed = 0
