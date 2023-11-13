@@ -23,8 +23,12 @@
     <string name="scoreTextView">0</string>
 
     <!-- Preference Titles -->
+    <string name="game_header">Opciones de juego</string>
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
+
+    <!-- Game Preferences -->
+    <string name="highscore_title">Puntaje Máximo</string>
 
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
@@ -43,8 +47,11 @@
     <string name="scoreTextViewG">Puntaje: </string>
 
     <!--Code-->
-    <string name="winButtonG">Ganaste</string>
-    <string name="loseButtonG">Perdíste</string>
+    <string name="winMessage">Ganaste</string>
+    <string name="loseMessage">Perdíste</string>
     <string name="correctActionMessage">¡Bien Hecho!</string>
+    <string name="BotIpPressInstruct">Presiona Bop It</string>
+    <string name="SwipeInstruct">Desliza</string>
+    <string name="ShakeInstruct">Agita</string>
 
 </resources>
