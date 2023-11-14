@@ -9,7 +9,6 @@ Desarrollado por Maybomi Tobar.
 Link apk: 
 
 versión 2:
-
 https://www.mediafire.com/file/fe840tsqw7iy9cb/BopIt3108v2.apk/file
 
 
@@ -23,15 +22,12 @@ https://www.mediafire.com/file/t07fybcg47xiyud/BopIt3108FullGame%2521%2521.apk/f
 Link video:
 
 versión 2: 
-
 https://youtu.be/VoVOLEGcZ-Y?si=78LT7QrjfQ8P-ish
 
 
 versión 3:
-
 https://youtu.be/gBM4qMY2eI0
 
 
 versión full:
-
 https://youtu.be/m9F57-USdow
