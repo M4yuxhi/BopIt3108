@@ -2,7 +2,6 @@ package com.maybomiTobar.bopit_31_08
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.res.Resources
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -22,6 +21,8 @@ import android.widget.Toast
 import androidx.preference.PreferenceManager
 import kotlin.random.Random
 import kotlin.math.sqrt
+import android.app.AlertDialog
+import android.os.Looper
 
 class GameActivity : AppCompatActivity(), SensorEventListener
 {
@@ -29,7 +30,6 @@ class GameActivity : AppCompatActivity(), SensorEventListener
     private lateinit var fxMediaPlayer : MediaPlayer
     private lateinit var playbackParams: PlaybackParams
     private var bgMusicVolume : Float = 0.2f
-    private lateinit var volumeValueTV : TextView
 
     private lateinit var gestureDetector : GestureDetector
 
@@ -52,6 +52,8 @@ class GameActivity : AppCompatActivity(), SensorEventListener
 
     private var thresholdDifficultyIncrease = 8
     private var highscore = 0
+    private var speedScalar = 1.2f
+    private var continueLoop = true
     private lateinit var sharePref : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -64,13 +66,9 @@ class GameActivity : AppCompatActivity(), SensorEventListener
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
 
-        instructionTV = findViewById(R.id.instructionTVG)
-        instructionTimeTV = findViewById(R.id.instructionTimeTVG)
-        scoreTV = findViewById(R.id.scoreTVG2)
+        getTextViews()
 
-        sharePref = PreferenceManager.getDefaultSharedPreferences(this)
-        val tDIPref = sharePref.getString("thresholdDifficultyIncreasePreference", "8")
-        thresholdDifficultyIncrease = Integer.parseInt(tDIPref)
+        getValuesFromPreferences()
 
         possibleInstructions = arrayOf(
             applicationContext.getString(R.string.BotIpPressInstruct),
@@ -140,11 +138,12 @@ class GameActivity : AppCompatActivity(), SensorEventListener
 
         if (actionsWellPerformed >= thresholdDifficultyIncrease && instructionTime > 1)
         {
+            changeSoundSpeedByScalar(2.0f)
             instructionTime -= 250
             actionsWellPerformed = 0
         }
 
-        var randomNumber = getRandomInstruction()
+        val randomNumber = getRandomInstruction()
         prevRandomNum = randomNumber
 
 
@@ -158,20 +157,25 @@ class GameActivity : AppCompatActivity(), SensorEventListener
 
             override fun onTick(millisUntilFinished : Long)
             {
-                instructionTimeTV.text = (1 + millisUntilFinished / 1000).toString()
+                (1 + millisUntilFinished / 1000).toString().also { instructionTimeTV.text = it }
             }
 
             override fun onFinish()
             {
                 if(!actionWasPerformed)
                 {
-                    setMusicOnFXMP(R.raw.lose_sound, false)
-                    checkHighscore()
-                    finish()
+                    if(!checkHighscore())
+                    {
+                        setMusicOnFXMP(R.raw.lose_sound, false)
+                        fxMediaPlayer.start()
+
+                        val delayMillis = 2000L
+                        var handler = Handler(Looper.getMainLooper())
+                        handler.postDelayed({finish()}, delayMillis)
+                    }
                 }
 
-                fxMediaPlayer.start()
-                bopItLogic()
+                if(continueLoop) bopItLogic()
             }
 
         }
@@ -182,19 +186,44 @@ class GameActivity : AppCompatActivity(), SensorEventListener
 
     private fun changeSoundSpeedByScalar(scalar : Float)
     {
-        backgroundMediaPlayer.playbackParams.setSpeed(playbackParams.speed * scalar)
+        val currentSpeed = backgroundMediaPlayer.playbackParams.speed
+
+        if(currentSpeed * scalar > 4) return
+
+        val params = backgroundMediaPlayer?.playbackParams?.setSpeed(currentSpeed * scalar)
+        backgroundMediaPlayer.playbackParams = params!!
     }
 
-    private fun checkHighscore()
+    private fun checkHighscore() : Boolean
     {
+        var value = false
+
         sharePref = PreferenceManager.getDefaultSharedPreferences(this)
-        val highscorePref = sharePref.getString("highscorePreference", "0")
+        val highscorePref : String? = sharePref.getString("highscorePreference", "0")
         highscore = Integer.parseInt(highscorePref)
 
         if(score > highscore)
         {
             sharePref.edit().putString("highscorePreference", score.toString()).apply()
+            setMusicOnFXMP(R.raw.newhighscore_sound, false)
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(applicationContext.getString(R.string.HighScoreDialogTitle) + " " + score)
+
+            builder.setPositiveButton("OK")
+            {
+                dialog,
+                which -> finish()
+            }
+
+            val dialog = builder.create()
+            dialog.show()
+
+            value = true
+            continueLoop = false
         }
+
+        return value
     }
 
     private fun correctPerformance()
@@ -218,6 +247,22 @@ class GameActivity : AppCompatActivity(), SensorEventListener
         */
     }
 
+    private fun getTextViews()
+    {
+        instructionTV = findViewById(R.id.instructionTVG)
+        instructionTimeTV = findViewById(R.id.instructionTimeTVG)
+        scoreTV = findViewById(R.id.scoreTVG2)
+    }
+
+    private fun getValuesFromPreferences()
+    {
+        sharePref = PreferenceManager.getDefaultSharedPreferences(this)
+        val tDIPref = sharePref.getString("thresholdDifficultyIncreasePreference", "8")
+        thresholdDifficultyIncrease = Integer.parseInt(tDIPref)
+        val speedSPref = sharePref.getString("speedScalarInscreasePreference", "1.2")
+        speedScalar = speedSPref!!.toFloat()
+
+    }
 
     private fun handlers()
     {
@@ -231,15 +276,18 @@ class GameActivity : AppCompatActivity(), SensorEventListener
     {
         backgroundMediaPlayer = MediaPlayer.create(this, R.raw.background_music)
         backgroundMediaPlayer.start()
+        backgroundMediaPlayer.isLooping = true
         backgroundMediaPlayer.setVolume(bgMusicVolume, bgMusicVolume)
 
         playbackParams = backgroundMediaPlayer.playbackParams
     }
 
+    /*
     private fun restartSoundSpeed()
     {
         backgroundMediaPlayer.playbackParams.setSpeed(1.0f)
     }
+    */
 
     private fun setMusicOnFXMP(id : Int, loop : Boolean)
     {

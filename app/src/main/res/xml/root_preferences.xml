@@ -18,7 +18,14 @@
             android:key="thresholdDifficultyIncreasePreference"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Edit text preference"
+            android:title="@string/thresholdDI_title"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:defaultValue="1.2"
+            android:key="speedScalarInscreasePreference"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/speedscalar_title"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/messages_header">

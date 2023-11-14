@@ -3,12 +3,13 @@
     <string name="app_name">BopIt-31-08</string>
     <string name="app_author">Maybomi Tobar, maybomi.unu@gmail.com</string>
 
-    <!--Main Menu Activity-->
+    <!--Home Activity-->
 
     <!--Button-->
     <string name="playButtonTextHome">Jugar</string>
     <string name="aboutButtonTextHome">Acerca De</string>
     <string name="preferencesButtonTextHome">Preferencias</string>
+    <string name="restartSettingsButtonTextHome">Restablecer configuraciones predeterminadas</string>
 
     <!--About Activity-->
 
@@ -29,6 +30,8 @@
 
     <!-- Game Preferences -->
     <string name="highscore_title">Puntaje Máximo</string>
+    <string name="thresholdDI_title">Número de aciertos para incrementar dificultad</string>
+    <string name="speedscalar_title">Factor multiplicando a la velocidad</string>
 
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
@@ -53,5 +56,6 @@
     <string name="BotIpPressInstruct">Presiona Bop It</string>
     <string name="SwipeInstruct">Desliza</string>
     <string name="ShakeInstruct">Agita</string>
+    <string name="HighScoreDialogTitle">Nuevo puntaje más alto</string>
 
 </resources>

@@ -9,8 +9,8 @@
 
     <Button
         android:id="@+id/aboutButtonHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="126dp"
+        android:layout_height="66dp"
         android:backgroundTint="@color/red"
         android:text="@string/aboutButtonTextHome"
         android:textColor="@color/white"
@@ -19,38 +19,51 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.635"
+        app:layout_constraintVertical_bias="0.658"
         tools:text="@string/aboutButtonTextHome" />
 
     <Button
         android:id="@+id/playButtonHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="101dp"
+        android:layout_height="67dp"
         android:backgroundTint="@color/red"
         android:text="@string/playButtonTextHome"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.534"
+        app:layout_constraintVertical_bias="0.543"
         tools:text="@string/playButtonTextHome" />
 
     <Button
         android:id="@+id/preferencesButtonHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="146dp"
+        android:layout_height="61dp"
         android:backgroundTint="@color/red"
         android:text="@string/preferencesButtonTextHome"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.733"
+        app:layout_constraintVertical_bias="0.773"
         tools:text="@string/preferencesButtonTextHome" />
+
+    <Button
+        android:id="@+id/restartSettingsButtonHome"
+        android:layout_width="317dp"
+        android:layout_height="98dp"
+        android:backgroundTint="@color/red"
+        android:text="@string/restartSettingsButtonTextHome"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.954"
+        tools:text="@string/restartSettingsButtonTextHome" />
 
     <ImageView
         android:id="@+id/imageView"
