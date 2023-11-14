@@ -57,5 +57,6 @@
     <string name="SwipeInstruct">Desliza</string>
     <string name="ShakeInstruct">Agita</string>
     <string name="HighScoreDialogTitle">Nuevo puntaje más alto</string>
+    <string name="ScoreDialogTitle">El puntaje es</string>
 
 </resources>

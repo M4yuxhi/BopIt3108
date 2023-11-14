@@ -168,10 +168,6 @@ class GameActivity : AppCompatActivity(), SensorEventListener
                     {
                         setMusicOnFXMP(R.raw.lose_sound, false)
                         fxMediaPlayer.start()
-
-                        val delayMillis = 2000L
-                        var handler = Handler(Looper.getMainLooper())
-                        handler.postDelayed({finish()}, delayMillis)
                     }
                 }
 
@@ -197,31 +193,34 @@ class GameActivity : AppCompatActivity(), SensorEventListener
     private fun checkHighscore() : Boolean
     {
         var value = false
+        continueLoop = false
 
         sharePref = PreferenceManager.getDefaultSharedPreferences(this)
         val highscorePref : String? = sharePref.getString("highscorePreference", "0")
         highscore = Integer.parseInt(highscorePref)
+        val builder = AlertDialog.Builder(this)
 
         if(score > highscore)
         {
             sharePref.edit().putString("highscorePreference", score.toString()).apply()
             setMusicOnFXMP(R.raw.newhighscore_sound, false)
 
-            val builder = AlertDialog.Builder(this)
             builder.setTitle(applicationContext.getString(R.string.HighScoreDialogTitle) + " " + score)
+            value = true
+        }
+        else
+        {
+            builder.setTitle(applicationContext.getString(R.string.ScoreDialogTitle) + " " + score)
+        }
 
-            builder.setPositiveButton("OK")
-            {
+        builder.setPositiveButton("OK")
+        {
                 dialog,
                 which -> finish()
-            }
-
-            val dialog = builder.create()
-            dialog.show()
-
-            value = true
-            continueLoop = false
         }
+
+        val dialog = builder.create()
+        dialog.show()
 
         return value
     }
