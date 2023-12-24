@@ -4,7 +4,7 @@ para dispositivos móviles. Este consiste en un juego similar a Simón Dice, en 
 cual debes realizar 3 acciones dependiendo de lo que diga la voz del juego, los 
 cuales son gira, estira y bop it (Golpear el icono de Bop It).
 
-Desarrollado por Maybomi Tobar.
+Desarrollado por Naomi Tobar.
 
 Link apk: 
 
